@@ -17,7 +17,7 @@ public class ProyectoAgenda {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner teclado = new Scanner(System.in);
-        String[][] ajenda = new String[20][20]; 
+        String[][] ajenda = new String[20][20]; //Agenda
         int option = 1;
         
         // Menú
