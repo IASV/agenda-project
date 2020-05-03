@@ -33,25 +33,34 @@ public class ProyectoAgenda {
             option = teclado.nextInt();
             
             switch(option){
-                    case 1:
-                        //Mostrar contactos
-                        break;
+                case 0:
+                    //Salir
+                    System.out.println("Salir");
+                    break;
                     
-                    case 2:
-                        //Añadir contactos
-                        break;
+                case 1:
+                    //Mostrar contactos
+                    System.out.println("Mostrar contactos");
+                    break;
                     
-                    case 3:
-                        //Buscar contactos
-                        break;
+                case 2:
+                    //Añadir contactos
+                    System.out.println("Añadir contactos");
+                    break;
                     
-                    case 4:
-                        //Borrar contactos
-                        break;
+                case 3:
+                    //Buscar contactos
+                    System.out.println("Buscar contactos");
+                    break;
+                    
+                case 4:
+                    //Borrar contactos
+                    System.out.println("Borrar contactos");
+                    break;
                         
-                    default:
-                        System.out.println("Opción fuera de rango...");
-                        break;
+                default:
+                    System.out.println("Opción fuera de rango...");
+                    break;
             }                
             
         }while(option != 0);
