@@ -31,6 +31,29 @@ public class ProyectoAgenda {
                     + "\n**************************************"
                     + "\nElige una opción: ");
             option = teclado.nextInt();
+            
+            switch(option){
+                    case 1:
+                        //Mostrar contactos
+                        break;
+                    
+                    case 2:
+                        //Añadir contactos
+                        break;
+                    
+                    case 3:
+                        //Buscar contactos
+                        break;
+                    
+                    case 4:
+                        //Borrar contactos
+                        break;
+                        
+                    default:
+                        System.out.println("Opción fuera de rango...");
+                        break;
+            }                
+            
         }while(option != 0);
     }
 }
