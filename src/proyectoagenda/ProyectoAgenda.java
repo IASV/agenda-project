@@ -17,8 +17,11 @@ public class ProyectoAgenda {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner teclado = new Scanner(System.in);
-        String[][] ajenda = new String[20][20]; //Agenda
-        int option = 1;
+        Metodos metodos = new Metodos();
+        String[][] agenda = new String[20][2]; //Agenda -20 filas -2 culumnas(nombre,teléfono)
+        int option,posicion = 0;
+        boolean estado;
+        String nombre, telefono;
         
         // Menú
         do{
@@ -41,11 +44,20 @@ public class ProyectoAgenda {
                 case 1:
                     //Mostrar contactos
                     System.out.println("Mostrar contactos");
+                    if (agenda[0][0] == null) System.out.println("No hay contactos agregados.");
+                    else{ metodos.listarItemAgenda(agenda);}
                     break;
                     
                 case 2:
                     //Añadir contactos
                     System.out.println("Añadir contactos");
+                    //Se piden el nombre y el teléfono a agregar
+                    System.out.print("Ingrese nombre.\n--> ");
+                    nombre = teclado.next();
+                    System.out.print("Ingrese teléfono.\n--> ");
+                    telefono = teclado.next();
+                    //Se llama al método y se le pasa la agenda y también el nombre y el teléfono a agregar
+                    posicion = metodos.itemAgenda(agenda, nombre, telefono, posicion);
                     break;
                     
                 case 3:
