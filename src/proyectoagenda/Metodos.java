@@ -24,6 +24,7 @@ public class Metodos {
        agenda[posicion][0] = nombre;
        agenda[posicion][1] = telefono;
        posicion++;
+       System.out.println("¡Contacto agregado con éxito!");
        return posicion;
    }
     //Método buscarItemAgenda()

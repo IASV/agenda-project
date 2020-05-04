@@ -20,7 +20,7 @@ public class ProyectoAgenda {
         Metodos metodos = new Metodos();
         String[][] agenda = new String[20][2]; //Agenda -20 filas -2 culumnas(nombre,teléfono)
         int option,posicion = 0;
-        boolean estado;
+        boolean estado = false;
         String nombre, telefono;
         
         // Menú
@@ -57,7 +57,18 @@ public class ProyectoAgenda {
                     System.out.print("Ingrese teléfono.\n--> ");
                     telefono = teclado.next();
                     //Se llama al método y se le pasa la agenda y también el nombre y el teléfono a agregar
-                    posicion = metodos.itemAgenda(agenda, nombre, telefono, posicion);
+                    //Se evalua las condiciones para nombre y teléfono
+                    if(telefono.length() == 10 & nombre.length() <= 40 ){
+                        //Se compara el teléfono con los que estan en la agenda para evitar duplicados
+                        for (int i = 0; i <= agenda.length-1; i++) {
+                            if(telefono.equals(agenda[i][1])) {
+                                System.out.println("El número existe");
+                                estado = true;
+                            }
+                        }
+                        //Se guarda la posición para saber final+1 para poder tener la posición del itemAgenda furturo a agregar
+                        if (!estado) posicion = metodos.itemAgenda(agenda, nombre, telefono, posicion); 
+                    }
                     break;
                     
                 case 3:
