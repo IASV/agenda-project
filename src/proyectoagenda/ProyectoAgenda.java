@@ -44,8 +44,11 @@ public class ProyectoAgenda {
                 case 1:
                     //Mostrar contactos
                     System.out.println("Mostrar contactos");
-                    if (agenda[0][0] == null) System.out.println("No hay contactos agregados.");
-                    else{ metodos.listarItemAgenda(agenda);}
+                    if (agenda[0][0] != null)
+                        metodos.listarItemAgenda(agenda);
+                    else
+                        System.out.println("No hay contactos agregados.");
+                    
                     break;
                     
                 case 2:
@@ -57,18 +60,9 @@ public class ProyectoAgenda {
                     System.out.print("Ingrese teléfono.\n--> ");
                     telefono = teclado.next();
                     //Se llama al método y se le pasa la agenda y también el nombre y el teléfono a agregar
-                    //Se evalua las condiciones para nombre y teléfono
-                    if(telefono.length() == 10 & nombre.length() <= 40 ){
-                        //Se compara el teléfono con los que estan en la agenda para evitar duplicados
-                        for (int i = 0; i <= agenda.length-1; i++) {
-                            if(telefono.equals(agenda[i][1])) {
-                                System.out.println("El número existe");
-                                estado = true;
-                            }
-                        }
-                        //Se guarda la posición para saber final+1 para poder tener la posición del itemAgenda furturo a agregar
-                        if (!estado) posicion = metodos.itemAgenda(agenda, nombre, telefono, posicion); 
-                    }
+                    if(!metodos.itemAgenda(agenda, nombre, telefono, posicion))
+                        System.out.println("¡Contacto guardado con éxito!");
+                    
                     break;
                     
                 case 3:

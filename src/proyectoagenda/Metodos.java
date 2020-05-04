@@ -20,12 +20,19 @@ public class Metodos {
     }
    
     //Método itemAgenda()
-   public int itemAgenda(String[][] agenda, String nombre, String telefono, int posicion){
-       agenda[posicion][0] = nombre;
-       agenda[posicion][1] = telefono;
-       posicion++;
-       System.out.println("¡Contacto agregado con éxito!");
-       return posicion;
+   public boolean itemAgenda(String[][] agenda, String nombre, String telefono, int posicion){
+        //Se evalua las condiciones para nombre y teléfono
+        if(telefono.length() == 10 & nombre.length() <= 40 ){
+            //Se compara el teléfono con los que estan en la agenda para evitar duplicados
+            for (int i = 0; i <= agenda.length-1; i++) {
+                if(telefono.equals(agenda[i][1])) {
+                    System.out.println("El número existe");
+                    return true;
+                }
+            }
+            
+        }
+        return false;
    }
     //Método buscarItemAgenda()
     
