@@ -60,7 +60,7 @@ public class ProyectoAgenda {
                     System.out.print("Ingrese teléfono.\n--> ");
                     telefono = teclado.next();
                     //Se llama al método y se le pasa la agenda y también el nombre y el teléfono a agregar
-                    if(!metodos.itemAgenda(agenda, nombre, telefono, posicion))
+                    if(metodos.itemAgenda(agenda, nombre, telefono, posicion))
                         System.out.println("¡Contacto guardado con éxito!");
                     
                     break;
