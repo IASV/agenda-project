@@ -50,17 +50,14 @@ public class Metodos {
    
    //Método para ordenar los contactos
    public static void movaUpPosition(String[][] agenda){
-        String temp, nombre;
-        for (int i = 1; i < agenda.length-1; i++) {
-            for (int j = 1; j < agenda.length-1; j++) {
-                if(agenda[j][0] != null){
-                    if (Integer.parseInt(agenda[j][1]) < Integer.parseInt(agenda[j+1][1])) { //Comparación del valor en (n)posición del vector u arreglo con (n+1)posición del vector, n > n+1.
-                        temp = agenda[j][1]; // Se guarda el valor en la posición (n) en la variable temp.
-                        nombre = agenda[j][0]; // Se guarda el nombre.
-                        agenda[j][1] = agenda[j+1][1]; // Se reemplaza el valor en posición (n) por valor en la posición (n+1).
-                        agenda[j][0] = agenda[j+1][0]; // Se reemplaza el antiguo nombre por el nuevo.
-                        agenda[j+1][1] = temp; // Se reemplaza valor en posición (n+1) por el valor alojado en temp.
-                        agenda[j+1][0] = nombre; //Se reemplaza el nombre en la nueva posición.
+        String[] temp = new String[2];        
+        for (int i = 0; i < agenda.length-1; i++) {
+            for (int j = 0; j < agenda.length-1; j++) {
+                if(agenda[j][0] != null && agenda[j+1][0] != null){// Verifica que el número actual a comparar, y el que le precede existan.                                                             
+                    if (Long.parseLong(agenda[j][1]) < Long.parseLong(agenda[j+1][1])) {
+                    temp = agenda[j];
+                    agenda[j] = agenda[j+1];
+                    agenda[j+1] = temp;
                     }
                 }
             }
