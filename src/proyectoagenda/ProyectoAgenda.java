@@ -19,9 +19,9 @@ public class ProyectoAgenda {
         Scanner teclado = new Scanner(System.in);
         Metodos metodos = new Metodos();
         String[][] agenda = new String[20][2]; //Agenda -20 filas -2 culumnas(nombre,teléfono)
-        int option,posicion = 0;
+        int option,posicion;
         boolean estado = false;
-        String nombre, telefono;
+        String nombre, telefono, nombreBuscar, nombreEliminar, nombreEditar;
         
         // Menú
         do{
@@ -30,6 +30,7 @@ public class ProyectoAgenda {
                     + "\n\t\t2. Añadir"
                     + "\n\t\t3. Buscar"
                     + "\n\t\t4. Borrar"
+                    + "\n\t\t5. Actualizar"
                     + "\n\t\t0. Terminar"
                     + "\n**************************************"
                     + "\nElige una opción: ");
@@ -60,7 +61,7 @@ public class ProyectoAgenda {
                     System.out.print("Ingrese teléfono.\n--> ");
                     telefono = teclado.next();
                     //Se llama al método y se le pasa la agenda y también el nombre y el teléfono a agregar
-                    if(metodos.itemAgenda(agenda, nombre, telefono, posicion))
+                    if(metodos.itemAgenda(agenda, nombre, telefono) == true)
                         System.out.println("¡Contacto guardado con éxito!");
                     
                     break;
@@ -68,13 +69,34 @@ public class ProyectoAgenda {
                 case 3:
                     //Buscar contactos
                     System.out.println("Buscar contactos");
+                    System.out.print("Ingrese nombre.\n--> ");
+                    nombreBuscar = teclado.next();
+                    posicion = Metodos.searchItemAgenda(agenda, nombreBuscar);
+                    if (posicion != -1)
+                        System.out.println("---------------------------\nNombre: "+agenda[posicion][0]+"\nTeléfono: "+agenda[posicion][1]+"\n---------------------------");
+                    else
+                        System.out.println("El contacto "+nombreBuscar+" no se encuentra.");
+           
                     break;
                     
                 case 4:
                     //Borrar contactos
                     System.out.println("Borrar contactos");
+                    System.out.print("Ingrese el nombre.\n--> ");
+                    nombreEliminar = teclado.next();
+                    metodos.delteItemAgenda(agenda, nombreEliminar);
+                    
                     break;
-                        
+                    
+                case 5:
+                    //Actualizar contactos
+                    System.out.println("Actulizar contactos");
+                    System.out.print("Ingese el nombre.\n--> ");
+                    nombreEditar = teclado.next();
+                    metodos.updateItemAgenda(agenda, nombreEditar);
+                    
+                    break;
+                    
                 default:
                     System.out.println("Opción fuera de rango...");
                     break;

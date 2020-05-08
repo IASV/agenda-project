@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package proyectoagenda;
-
+import java.util.Scanner;
 /**
  *
  * @author Iván Suarez, Kevin García
  */
 public class Metodos {
+    
+    private Scanner teclado = new Scanner(System.in);
     
     //Método listarItemAgenda()
     public void listarItemAgenda(String[][] agenda){
@@ -21,7 +23,7 @@ public class Metodos {
     }
    
     //Método itemAgenda()
-   public boolean itemAgenda(String[][] agenda, String nombre, String telefono, int posicion){
+   public boolean itemAgenda(String[][] agenda, String nombre, String telefono){
         //Se evalua las condiciones para nombre y teléfono
         if(telefono.length() == 10 && nombre.length() <= 40 ){
             //Se compara el teléfono con los que estan en la agenda para evitar duplicados
@@ -66,10 +68,44 @@ public class Metodos {
    
 
     //Método buscarItemAgenda()
+    public static int searchItemAgenda(String[][] agenda, String nombre){
+        Metodos.movaUpPosition(agenda);
+        for (int i = 0; i <= agenda.length-1; i++) {
+            if (agenda[i][0] == null ? nombre == null : agenda[i][0].equals(nombre)) {
+                return i;
+            }
+        }
+        return -1;
+    }
     
     //Método borrarItemAgenda()
+    public void delteItemAgenda(String[][] agenda, String nombre){
+        int posicion = searchItemAgenda(agenda, nombre), status;
+        if (posicion != -1){
+            System.out.println("---------------------------\nNombre: "+agenda[posicion][0]+"\nTeléfono: "+agenda[posicion][1]+"\n---------------------------");
+            System.out.print("Desea borrar el contacto.\n1. Si.\n2. No.\n--> ");
+            status = teclado.nextInt();
+            if(status == 1){
+                agenda[posicion][0] = null;
+                agenda[posicion][1] = null;
+                System.out.println("¡Proceso realizado con éxito!");
+                Metodos.movaUpPosition(agenda);
+            }
+        }
+        else
+            System.out.println("El contacto "+nombre+" no se encuentra.");
+    }
     
-   
+    //Método actualizarItemAgenda()
+    public void updateItemAgenda(String[][] agenda, String nombre){
+        int posicion = Metodos.searchItemAgenda(agenda, nombre);
+        if(posicion != -1){
+           System.out.print("Ingrese el nuevo número.\n--> ");           
+           agenda[posicion][1] = teclado.nextLine();
+           System.out.println("¡Proceso realizado con éxito!");
+           Metodos.movaUpPosition(agenda);
+       }
+   }
    
    
 }
