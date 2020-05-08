@@ -67,6 +67,7 @@ public class ProyectoAgenda {
                     break;
                     
                 case 3:
+                    
                     //Buscar contactos
                     System.out.println("Buscar contactos");
                     System.out.print("Ingrese nombre.\n--> ");
