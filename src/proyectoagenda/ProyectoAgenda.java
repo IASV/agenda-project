@@ -22,7 +22,16 @@ public class ProyectoAgenda {
         int option,posicion;
         boolean estado = false;
         String nombre, telefono, nombreBuscar, nombreEliminar, nombreEditar;
+        //agenda[0][0]= "A";
+        //agenda[0][1]= "3124569870";
+        //agenda[1][0]= "B";
+        //agenda[1][1]= "3124569871";
+        //agenda[2][0]= "C";
+        //agenda[2][1]= "3124569876";
+        //agenda[3][0]= "D";
+        //agenda[3][1]= "3124569878";
         
+     
         // Menú
         do{
             System.out.print("*************** AGENDA ***************"
@@ -61,16 +70,19 @@ public class ProyectoAgenda {
                     System.out.print("Ingrese teléfono.\n--> ");
                     telefono = teclado.next();
                     //Se llama al método y se le pasa la agenda y también el nombre y el teléfono a agregar
-                    if(metodos.itemAgenda(agenda, nombre, telefono) == true)
+                    if(metodos.itemAgenda(agenda, nombre, telefono) )
                         System.out.println("¡Contacto guardado con éxito!");
+                    else
+                        System.out.println("El contacto no cumplio con los parametros establecidos.");
                     
+                
                     break;
                     
                 case 3:
-                    
+                   
                     //Buscar contactos
                     System.out.println("Buscar contactos");
-                    System.out.print("Ingrese nombre.\n--> ");
+                    System.out.print("Ingrese nombre o numero.\n--> ");
                     nombreBuscar = teclado.next();
                     posicion = Metodos.searchItemAgenda(agenda, nombreBuscar);
                     if (posicion != -1)

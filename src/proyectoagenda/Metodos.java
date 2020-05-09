@@ -12,8 +12,7 @@ import java.util.Scanner;
 public class Metodos {
     
     private Scanner teclado = new Scanner(System.in);
-    
-    //Método listarItemAgenda()
+   //Método listarItemAgenda()
     public void listarItemAgenda(String[][] agenda){
         Metodos.movaUpPosition(agenda);
         System.out.println("\tNombre\tTeléfono");
@@ -25,20 +24,30 @@ public class Metodos {
     //Método itemAgenda()
    public boolean itemAgenda(String[][] agenda, String nombre, String telefono){
         //Se evalua las condiciones para nombre y teléfono
-        if(telefono.length() == 10 && nombre.length() <= 40 ){
-            //Se compara el teléfono con los que estan en la agenda para evitar duplicados
-            for (int i = 0; i <= agenda.length-1; i++) {
-                if(telefono.equals(agenda[i][1])) {
-                    System.out.println("El número existe");
-        
-                    return false;
+        if(nombre.length()<=40 ){
+            if (telefono.length()==10) {
+                //Se compara el teléfono con los que estan en la agenda para evitar duplicados
+                
+                for (int i = 0; i <= agenda.length-1; i++) {
+                    
+                    if(telefono.equals(agenda[i][1])) {
+                        System.out.println("El número existe");
+                        
+                        return false;
+                    }
+                    
                 }
+                
+                
+            
+                agenda[Metodos.positionItemAgenda(agenda)][0] = nombre;                
+                agenda[Metodos.positionItemAgenda(agenda)-1][1] = telefono;
+                return true;
+                
             }
-            agenda[Metodos.positionItemAgenda(agenda)][0] = nombre;
-            agenda[Metodos.positionItemAgenda(agenda)-1][1] = telefono;
         }
         
-        return true;
+        return false;
    }
    
    //Método para encontrar la posición que debe ocupar el itemAgenda()
@@ -47,6 +56,7 @@ public class Metodos {
        for (int i = 0; i <= agenda.length-1; i++)
            if(agenda[i][0] != null)
                acumContacTotal++;
+        
        return acumContacTotal;
    }
    
@@ -54,7 +64,8 @@ public class Metodos {
    public static void movaUpPosition(String[][] agenda){
         String[] temp = new String[2];        
         for (int i = 0; i < agenda.length-1; i++) {
-            for (int j = 0; j < agenda.length-1; j++) {
+            for (int j = 0; j <=agenda.length-1; j++) {
+                
                 if(agenda[j][0] != null && agenda[j+1][0] != null){// Verifica que el número actual a comparar, y el que le precede existan.                                                             
                     if (Long.parseLong(agenda[j][1]) < Long.parseLong(agenda[j+1][1])) {
                     temp = agenda[j];
@@ -62,6 +73,14 @@ public class Metodos {
                     agenda[j+1] = temp;
                     }
                 }
+                
+            }
+            
+        }
+        for (int i = 0; i <= agenda.length-1; i++){
+            if(agenda[i][0] == "0"){
+                agenda[i][0] = null;
+                agenda[i][1] = null;
             }
         }
     }
@@ -71,10 +90,20 @@ public class Metodos {
     public static int searchItemAgenda(String[][] agenda, String nombre){
         Metodos.movaUpPosition(agenda);
         for (int i = 0; i <= agenda.length-1; i++) {
-            if (agenda[i][0] == null ? nombre == null : agenda[i][0].equals(nombre)) {
+            
+            if (agenda[i][0] == null ? nombre == null : agenda[i][0].toLowerCase().equalsIgnoreCase(nombre.toLowerCase())) {   
                 return i;
             }
+            
         }
+         for (int i = 0; i <= agenda.length-1; i++) {
+            
+            if (agenda[i][1] == null ? nombre == null : agenda[i][1].toLowerCase().equalsIgnoreCase(nombre.toLowerCase())) {   
+                return i;
+            }
+            
+        }
+        
         return -1;
     }
     
@@ -86,8 +115,8 @@ public class Metodos {
             System.out.print("Desea borrar el contacto.\n1. Si.\n2. No.\n--> ");
             status = teclado.nextInt();
             if(status == 1){
-                agenda[posicion][0] = null;
-                agenda[posicion][1] = null;
+                agenda[posicion][0] = "0";
+                agenda[posicion][1] = "0";
                 System.out.println("¡Proceso realizado con éxito!");
                 Metodos.movaUpPosition(agenda);
             }
@@ -105,7 +134,10 @@ public class Metodos {
            System.out.println("¡Proceso realizado con éxito!");
            Metodos.movaUpPosition(agenda);
        }
+        
+    
    }
-   
+    
+    
    
 }
