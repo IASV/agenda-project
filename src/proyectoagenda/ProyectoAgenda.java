@@ -18,18 +18,18 @@ public class ProyectoAgenda {
         // TODO code application logic here
         Scanner teclado = new Scanner(System.in);
         Metodos metodos = new Metodos();
-        String[][] agenda = new String[20][2]; //Agenda -20 filas -2 culumnas(nombre,teléfono)
+        String[][] agenda = new String[5][2]; //Agenda -20 filas -2 culumnas(nombre,teléfono), modificar para 20 contactos (String[20][2])
         int option,posicion;
         boolean estado = false;
         String nombre, telefono, nombreBuscar, nombreEliminar, nombreEditar;
-        //agenda[0][0]= "A";
-        //agenda[0][1]= "3124569870";
-        //agenda[1][0]= "B";
-        //agenda[1][1]= "3124569871";
-        //agenda[2][0]= "C";
-        //agenda[2][1]= "3124569876";
-        //agenda[3][0]= "D";
-        //agenda[3][1]= "3124569878";
+        agenda[0][0]= "A";
+        agenda[0][1]= "3124569870";
+        agenda[1][0]= "B";
+        agenda[1][1]= "3124569871";
+        agenda[2][0]= "C";
+        agenda[2][1]= "3124569876";
+        agenda[3][0]= "D";
+        agenda[3][1]= "3124569878";
         
      
         // Menú
@@ -41,7 +41,7 @@ public class ProyectoAgenda {
                     + "\n\t\t4. Borrar"
                     + "\n\t\t5. Actualizar"
                     + "\n\t\t0. Terminar"
-                    + "\n**************************************"
+                    + "\n***************************1***********"
                     + "\nElige una opción: ");
             option = teclado.nextInt();
             

@@ -23,6 +23,7 @@ public class Metodos {
    
     //Método itemAgenda()
    public boolean itemAgenda(String[][] agenda, String nombre, String telefono){
+       int cont = 0;
         //Se evalua las condiciones para nombre y teléfono
         if(nombre.length()<=40 ){
             if (telefono.length()==10) {
@@ -38,10 +39,19 @@ public class Metodos {
                     
                 }
                 
-                
-            
-                agenda[Metodos.positionItemAgenda(agenda)][0] = nombre;                
-                agenda[Metodos.positionItemAgenda(agenda)-1][1] = telefono;
+                if(cont == 1) 
+                    System.out.println("Lista de contactos llena.");
+               
+                else if(Metodos.positionItemAgenda(agenda) >= 5){ // modificar para 20 contactos (Metods.positionItemAgenda(agenda) >= 20)
+                    agenda[Metodos.positionItemAgenda(agenda)-1][0] = nombre;                
+                    agenda[Metodos.positionItemAgenda(agenda)-1][1] = telefono;
+                    cont = 1;
+                }
+
+                else{
+                    agenda[Metodos.positionItemAgenda(agenda)][0] = nombre;                
+                    agenda[Metodos.positionItemAgenda(agenda)-1][1] = telefono;
+                }
                 return true;
                 
             }
@@ -64,13 +74,13 @@ public class Metodos {
    public static void movaUpPosition(String[][] agenda){
         String[] temp = new String[2];        
         for (int i = 0; i < agenda.length-1; i++) {
-            for (int j = 0; j <=agenda.length-1; j++) {
+            for (int j = 1; j <=agenda.length-1; j++) {
                 
-                if(agenda[j][0] != null && agenda[j+1][0] != null){// Verifica que el número actual a comparar, y el que le precede existan.                                                             
-                    if (Long.parseLong(agenda[j][1]) < Long.parseLong(agenda[j+1][1])) {
-                    temp = agenda[j];
-                    agenda[j] = agenda[j+1];
-                    agenda[j+1] = temp;
+                if(agenda[j][0] != null){// Verifica que el número actual a comparar, y el que le precede existan.                                                             
+                    if (Long.parseLong(agenda[j-1][1]) < Long.parseLong(agenda[j][1])) {
+                    temp = agenda[j-1];
+                    agenda[j-1] = agenda[j];
+                    agenda[j] = temp;
                     }
                 }
                 
