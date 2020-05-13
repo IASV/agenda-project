@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Metodos {
     
     private Scanner teclado = new Scanner(System.in);
-   //Método listarItemAgenda()
+
     public void listarItemAgenda(String[][] agenda){
         Metodos.movaUpPosition(agenda);
         System.out.println("\tNombre\tTeléfono");
